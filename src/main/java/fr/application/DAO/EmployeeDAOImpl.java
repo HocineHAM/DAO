@@ -17,12 +17,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	Connection con = null;
 	private static String URL = "jdbc:mysql://localhost:3306/employee";
 	private static String LOGIN = "root";
-	private static String PASSWORD = "root";
+	private static String PASSWORD = "123456";
 
 	public Employee find(int id) throws Exception {
 
 		Connection con;
-
+		
 		con = DriverManager.getConnection(URL, LOGIN, PASSWORD);
 
 		Statement stmt = con.createStatement();
@@ -30,20 +30,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		// 'id'");
 
 		PreparedStatement pst = (PreparedStatement) con.prepareStatement("SELECT * FROM employee where EMP_ID = ?");
-
+		Employee emp = null;
 		pst.setInt(1, id);
 		ResultSet rset = pst.executeQuery();
-		while (rset.next()) {
+		if (rset.next()) {
+			emp = new Employee(id);
+			emp.setName(rset.getString("EMP_NAME"));
+			emp.setSalary(rset.getInt("SALARY"));
 
-			String EMP_NAME = rset.getString("EMP_NAME");
-
-			System.out.println("Mr " + EMP_NAME);
 		}
 		rset.close();
 		stmt.close();
 		con.close();
 
-		return null;
+		return emp;
 
 	}
 

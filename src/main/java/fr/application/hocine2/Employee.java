@@ -2,6 +2,11 @@ package fr.application.hocine2;
 
 public class Employee {
 	
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", salary=" + salary + ", name=" + name + "]";
+	}
+
 	private int id;
 	private int salary;
 	private String name;

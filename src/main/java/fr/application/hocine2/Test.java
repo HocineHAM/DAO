@@ -16,9 +16,9 @@ public class Test {
 			Employee affiche = dao.find(7369);
 			System.out.println(affiche);
 			System.out.println(result);
-			
-			System.out.println(dao.findBigestSalary(900));
-			System.out.println(dao.findAll());
+//			
+//			System.out.println(dao.findBigestSalary(900));
+//			System.out.println(dao.findAll());
 			
 		}
 	
